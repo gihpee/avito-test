@@ -1,15 +1,22 @@
-FROM gradle:4.7.0-jdk8-alpine AS build
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build --no-daemon 
+FROM python:3.11-slim
 
-FROM openjdk:8-jre-slim
+WORKDIR /avito_test
 
-EXPOSE 8080
+COPY . /avito_test
 
-RUN mkdir /app
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY --from=build /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
+ENV POSTGRES_CONN=${POSTGRES_CONN}
+ENV POSTGRES_JDBC_URL=${POSTGRES_JDBC_URL}
+ENV POSTGRES_USERNAME=${POSTGRES_USERNAME}
+ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+ENV POSTGRES_HOST=${POSTGRES_HOST}
+ENV POSTGRES_PORT=${POSTGRES_PORT}
+ENV POSTGRES_DATABASE=${POSTGRES_DATABASE}
 
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/spring-boot-application.jar"]
+ENV SERVER_ADDRESS=${SERVER_ADDRESS}
 
+RUN python manage.py makemigrations service
+RUN python manage.py migrate
+
+CMD ["sh", "-c", "python manage.py runserver $SERVER_ADDRESS"]
