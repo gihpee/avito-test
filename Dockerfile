@@ -19,6 +19,8 @@ ENV POSTGRES_DATABASE=${POSTGRES_DATABASE}
 
 ENV SERVER_ADDRESS=${SERVER_ADDRESS}
 
+ENV PYTHONPATH=/avito_test
+
 RUN python manage.py makemigrations service
 RUN python manage.py migrate
 

@@ -3,9 +3,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from avito_test.service.models import Tender, Organization, Employee, OrganizationResponsible, TenderVersion, Bid, \
+from service.models import Tender, Organization, Employee, OrganizationResponsible, TenderVersion, Bid, \
     BidVersion, Feedback
-from avito_test.service.serializers import TenderSerializer, BidSerializer, FeedbackSerializer
+from service.serializers import TenderSerializer, BidSerializer, FeedbackSerializer
 
 
 def check_access(tender_id, username):

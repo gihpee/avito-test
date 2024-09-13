@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from avito_test.service.views import Ping
+from service.views import Ping
 
 urlpatterns = [
     path('admin/', admin.site.urls),

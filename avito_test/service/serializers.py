@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from avito_test.service.models import Tender, Bid, Feedback
+from service.models import Tender, Bid, Feedback
 
 
 class TenderSerializer(serializers.ModelSerializer):
