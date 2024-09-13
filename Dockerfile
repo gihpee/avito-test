@@ -2,8 +2,6 @@ FROM python:3.11-slim
 
 COPY . /avito_test
 
-WORKDIR /avito_test
-
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 EXPOSE 8080
