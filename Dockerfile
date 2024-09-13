@@ -1,10 +1,12 @@
 FROM python:3.11-slim
 
-WORKDIR /avito_test
-
 COPY . /avito_test
 
+WORKDIR /avito_test
+
 RUN pip install --upgrade pip && pip install -r requirements.txt
+
+EXPOSE 8080
 
 ENV POSTGRES_CONN=${POSTGRES_CONN}
 ENV POSTGRES_JDBC_URL=${POSTGRES_JDBC_URL}
