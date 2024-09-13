@@ -1,8 +1,9 @@
 FROM python:3.11-slim
 
-COPY . /avito_test
+WORKDIR /avito_test
 
-WORKDIR /avito_test/avito_test/
+COPY avito_test /avito_test
+COPY requirements.txt /avito_test
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
