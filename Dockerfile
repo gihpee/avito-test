@@ -9,7 +9,4 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 EXPOSE 8080
 
-RUN python manage.py makemigrations service
-RUN python manage.py migrate
-
-CMD ["sh", "-c", "python manage.py runserver"]
+ENTRYPOINT ["sh", "-c", "python manage.py makemigrations service && python manage.py migrate && python manage.py runserver"]
