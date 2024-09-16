@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'avito_test.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('POSTGRES_DATABASE'),
-        'USER': config('POSTGRES_USERNAME'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': config('POSTGRES_PORT'),
+        'NAME': config('POSTGRES_DATABASE', default='avito'),
+        'USER': config('POSTGRES_USERNAME', default='postgres'),
+        'PASSWORD': config('POSTGRES_PASSWORD', default='rootroot'),
+        'HOST': config('POSTGRES_HOST', default='127.0.0.1'),
+        'PORT': config('POSTGRES_PORT', default=''),
     }
 }
 

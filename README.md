@@ -15,6 +15,8 @@
 
 ```docker build -t <name> .```
 
+```docker run <name>```
+
 ## Запуск без контейнера
 ```python 3 -m venv venv```
 

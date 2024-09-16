@@ -43,12 +43,12 @@ class Ping(APIView):
 
 class GetTender(APIView):
     def get(self, request):
-        service_type = request.query_params.get('serviceType')
+        service_types = request.query_params.getlist('serviceType[]')
 
-        if service_type:
-            tenders = Tender.objects.filter(service_type=service_type, status='Published')
+        if service_types:
+            tenders = Tender.objects.filter(service_type__in=service_types, status='Published')
         else:
-            tenders = Tender.objects.all(status='Published')
+            tenders = Tender.objects.filter(status='Published')
 
         serializer = TenderSerializer(tenders, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
